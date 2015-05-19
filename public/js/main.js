@@ -1,5 +1,28 @@
 (function($){
 
+	var ScoreView = Backbone.View.extend({
+		el: '#total-score-container'
+	,	initialize: function(){
+			_.bindAll(this, 'render', 'learnMore');
+			this.render();
+		}
+	,	render: function(){
+			$(this.el).html(""); //clear
+			var html;
+			if(Teaser.isReadyForTotalScore()){
+				var score = Teaser.getTotalScore();
+				html = window.JST['score']({score:score })
+			}else{
+				html = window.JST['no_score']
+			}
+			$(this.el).html(html);
+			$('#learn-more-btn').click(this.learnMore);
+		}
+	,	learnMore:function(){
+			app.learnMore();
+		}	
+	});
+
 	var LandingView = Backbone.View.extend({
 		el: '#teaser-container'
 	,	initialize :function(){
@@ -15,11 +38,14 @@
 			$(this.el).html(''); //clear
 			var landing_template = window.JST["landing"]
 			$(this.el).append(landing_template);
+			//if(Teaser.isReadyForTotalScore()){
+				var total_score_view = new ScoreView();
+			//}
 		}
 	,	afterRender : function(){
 			var that = this;
 			var schema = Teaser.getSchema();
-			var cats = ["grocery", "bank", "dining"]; //coupled with schema 
+			var cats = Teaser.getCats();  
 			_.each(cats, function(cat, i, list){
 				console.log(cat);
 				var container_el = "#cat-entry-container"; //coupled with window.JST["landing"]
@@ -101,13 +127,28 @@
 			var scoring_schema = app.schema.sub_score; //map from score to message
 			Teaser.setScore(score, cat);
 			console.log("New score for " + cat + ": " + Teaser.getScore(cat));
-			alert("Your score is: " + score  + " out of 3. " + scoring_schema[score]);
+			alert("Your score is: " + score  + " out of 2. " + scoring_schema[score]);
 			app.home();
 			
 		}
 	});
 
-	
+	var LearnMoreView = Backbone.View.extend({
+		el: '#teaser-container'
+	,	initialize :function(){
+			_.bindAll(this, 'render', 'exit');
+			this.render();
+		}
+	,	render: function(){
+			var template = window.JST["learn_more"];
+			$(this.el).html('');//clear
+			$(this.el).html(template());
+			$("#exit-learn-more").click(this.exit);
+		}
+	,	exit: function(){
+			app.home();
+		}
+	});
 
 	var AppRouter = Backbone.Router.extend({
 		routes: {
@@ -119,11 +160,15 @@
 	,	runErrand: function(category){
 			console.log("and we're off: " + category + "!")
 			this.errand_view = new CategoryView({"category" : category});
-	}
+		}
 	,	getResult: function(score, cat){
 			this.results_view = new ResultsView({score: score, cat:cat});
 
 		}
+	,	learnMore: function(){
+			this.learn_more_view = new LearnMoreView();
+		}
+
 	});
 	//start the app
 	
