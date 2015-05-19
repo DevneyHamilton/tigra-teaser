@@ -3,7 +3,7 @@ window.JST = {};
 
 window.JST['landing'] = _.template(
 	'<div class="jumbotron">\
-  		<h1>How\'s your economic citizenship?</h1>\
+  		<h3>How\'s your economic citizenship?</h3>\
   		<p>Let\'s find out. Where to?</p>\
   		<div id="cat-entry-container" class="btn-group-vertical">\
   		</div>\
@@ -11,7 +11,7 @@ window.JST['landing'] = _.template(
 	);
 
 window.JST['cat_entry'] = _.template(
-	'<button id="<%=id%>" class="btn btn-lg"><%=intro%></button>'
+	'<div id="<%=score_container_id%>"><%=score%> /3 </div><button id="<%=btn_id%>" class="btn btn-default"><%=intro%></button>'
 	);
 
 window.JST['category_template'] = _.template(
@@ -23,6 +23,6 @@ window.JST['category_template'] = _.template(
 	);
 
 window.JST['option'] = _.template(
-		'<button id="<%=id%>" class="btn btn-lg"><%=desc%></button>'
+		'<button id="<%=btn_id%>" class="btn btn-default"><%=desc%></button>'
 	);
 

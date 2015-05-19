@@ -1,6 +1,22 @@
 (function(exports){
 	var schema = {};
 
+	//dynamic infor for app
+	var scores = {
+		"grocery" : "?"
+	, 	"bank" : "?"
+	,	"dining" : "?"
+	,	"total" : "?"
+	}
+
+	exports.getScore = function(cat){
+		return scores[cat];
+	}
+
+	exports.setScore = function(value, cat){
+		scores[cat] = value;
+	}
+
 	exports.init = function(){
 		console.log("initing teaser")
 		schema = {

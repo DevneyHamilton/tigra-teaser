@@ -12,25 +12,27 @@
 			this.render();
 		}
 	,	render :function(){
+			$(this.el).html(''); //clear
 			var landing_template = window.JST["landing"]
 			$(this.el).append(landing_template);
 		}
 	,	afterRender : function(){
 			var that = this;
 			var schema = Teaser.getSchema();
-			console.log(JSON.stringify(schema));
 			var cats = ["grocery", "bank", "dining"]; //coupled with schema 
 			_.each(cats, function(cat, i, list){
 				console.log(cat);
 				var container_el = "#cat-entry-container"; //coupled with window.JST["landing"]
 				var template = window.JST['cat_entry'];
 				var intro = schema[cat]["intro"];
-				var id = cat + "-start";
-				var html = template({id: id, intro: intro});
+				var score = Teaser.getScore(cat);
+				var btn_id = cat + "-start";
+				var score_container_id = cat + "-score-container"
+				var html = template({btn_id: btn_id, intro: intro, score_container_id: score_container_id, score: score});
 				console.log(html);
 				$(container_el).append(html);
 				//var button_template = window.JST["cat_button"];
-				var selector = "#" + id
+				var selector = "#" + btn_id
 				$(selector).click({category : cat}, that.runErrand);
 			});
 
@@ -68,10 +70,10 @@
 			var keys = Object.keys(cat_options);
 			_.each(keys, function(option_score, i, list){
 				var template = window.JST["option"]
-				var id = that.options.category + "-option-" + option_score;
+				var btn_id= cat + "-option-" + option_score;
 				var container_selector = "#" + that.options.category + "-options-container"
-				$(container_selector).append(template({id: id, desc: cat_options[option_score]}))
-				var selector = "#" + id;
+				$(container_selector).append(template({btn_id: btn_id, desc: cat_options[option_score]}))
+				var selector = "#" + btn_id;
 				$(selector).click({score: option_score, cat: cat}, that.getResult)
 			})
 		}
@@ -97,9 +99,10 @@
 			var score = this.options.score
 			var cat = this.options.cat
 			var scoring_schema = app.schema.sub_score; //map from score to message
-			app.scores[cat]= score;
-			console.log(JSON.stringify(app.scores));
+			Teaser.setScore(score, cat);
+			console.log("New score for " + cat + ": " + Teaser.getScore(cat));
 			alert("Your score is: " + score  + " out of 3. " + scoring_schema[score]);
+			app.home();
 			
 		}
 	});
@@ -129,30 +132,5 @@
 	Backbone.history.start();
 
 	app.schema = Teaser.getSchema();
-	//static info for app
-	// app.schema = {}
-	// app.schema["sub_score"] = {
-	// 			"1": "You are beginning your journey to economic citizenship."
-	// 		,	"2": "You are a builder!"
-	// 		,	"3": "You are a change-maker!"
-	// 		};
-	// app.schema["grocery"] = {
-	// 			"intro" : "Get groceries"
-	// 		,	"question" : "Where was the LAST place that you bought groceries?"
-	// 		,	"options" : {
-	// 				"1" : "Big-box chain store (like Walmart or Target)"
-	// 			,	"2"	: "Local store with good wages or local sourcing (like Berkeley Bowl)"
-	// 			,	"3" : "Local store with good wages AND local sourcing (like Rainbow Co-Op)"
-	// 			}
-	// 		}
-
-
-	//dynamic infor for app
-	app.scores = {
-		"grocery" : "?"
-	, 	"bank" : "?"
-	,	"dining" : "?"
-	,	"total" : "?"
-	}
 
 })(jQuery);
