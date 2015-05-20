@@ -12,7 +12,7 @@ window.JST['landing'] = _.template(
 	);
 
 window.JST['cat_entry'] = _.template(
-	'<div id="<%=score_container_id%>"><%=score%> / 2 </div><button id="<%=btn_id%>" class="btn btn-default"><%=intro%></button>'
+	'  <button id="<%=btn_id%>" class="btn btn-default btn-block">  <%=intro%> <small> <span id="<%=score_container_id%>" class="points pull-right"><%=score%> </span></small>   </button>'
 	);
 
 window.JST['score'] = _.template(

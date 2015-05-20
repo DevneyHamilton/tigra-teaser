@@ -1,0 +1,17 @@
+/*Tigra orange: #E46B2B*/
+
+.btn{
+	white-space:normal;  /*wraps text on buttons*/
+}
+
+.points.badge{
+	background-color: #e46b2b;
+}
+
+.points.glyphicon-play{
+	color:#e46b2b;
+}
+
+#cat-entry-container{
+	width: 100%;
+}

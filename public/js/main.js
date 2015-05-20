@@ -60,6 +60,12 @@
 				//var button_template = window.JST["cat_button"];
 				var selector = "#" + btn_id
 				$(selector).click({category : cat}, that.runErrand);
+				var score_container_selector = "#" + score_container_id
+				var classes = "glyphicon glyphicon-play points pull-right";
+				if(Teaser.hasScore(cat)){
+					classes = "badge points pull-right";
+				}
+				$(score_container_selector).addClass(classes);
 			});
 
 		}

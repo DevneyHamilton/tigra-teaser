@@ -3,10 +3,10 @@
 
 	//dynamic infor for app
 	var scores = {
-		"grocery" : "?"
-	, 	"bank" : "?"
-	,	"dining" : "?"
-	,	"total" : "?"
+		"grocery" : ""
+	, 	"bank" : ""
+	,	"dining" : ""
+	,	"total" : ""
 	}
 
 	var _getCats = function(){
@@ -16,11 +16,15 @@
 		return _getCats();
 	}
 
+	exports.hasScore = function(cat){
+		return (!(scores[cat] === ""))
+	}
+
 	exports.isReadyForTotalScore = function(){
 		var cats = _getCats();
 		var answer = true;
 		_.each(cats, function(cat, i, list){
-			if(scores[cat] === "?"){
+			if(scores[cat] === ""){
 				answer = false;
 			}
 		});
@@ -55,7 +59,7 @@
 			,	"2": "You are a change-maker!"
 			}
 		,	"grocery" : {
-				"intro" : "Get groceries"
+				"intro" : "Get groceries  "
 			,	"question" : "Where was the LAST place that you bought groceries?"
 			,	"options" : {
 					"0" : "Big-box chain store (like Walmart or Target)"
@@ -64,7 +68,7 @@
 				}
 			}
 		,	"bank" : {
-				"intro" : "Go to the bank"
+				"intro" : "Go to the bank  "
 			,	"question" : "Where do you bank?"
 			,	"options" : {
 					"0" : "Commercial Bank (like Wells Fargo)"
@@ -74,7 +78,7 @@
 
 			}
 		,	"dining" : {
-				"intro" : "Get a bite to eat"
+				"intro" : "Eat out "
 			,	"question" : "Where was the last restaurant where you ate out?"
 			,	"options" : {
 					"0" : "A chain (like Chili's or Denny's)"
