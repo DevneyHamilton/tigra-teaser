@@ -4,7 +4,7 @@ window.JST = {};
 window.JST['landing'] = _.template(
 	'<div class="jumbotron">\
   		<h3>How\'s your economic citizenship?</h3>\
-  		<p>Let\'s do some errands and find out. Where to?</p>\
+  		<p>Play to find out!  </p>\
   		<div id="cat-entry-container" class="btn-group-vertical">\
   		</div>\
   		<div id="total-score-container"></div>\
