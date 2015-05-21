@@ -2,7 +2,7 @@ console.log("loading jst")
 window.JST = {};
 
 window.JST['landing'] = _.template(
-	'<div class="jumbotron">\
+	'<div class="jumbotron container-fluid">\
   		<h3>How\'s your economic citizenship?</h3>\
   		<p>Play to find out!  </p>\
   		<div id="cat-entry-container" class="btn-group-vertical">\

@@ -1,5 +1,16 @@
 /*Tigra orange: #E46B2B
- complementary green: #00A472*/
+ complementary green: #00A472
+ bootstrap default jumbotron background color: #eee*/
+
+
+html,body {
+height:100%;
+background-color: #eee;
+}
+
+.jumbotron {
+height:100%;
+}
 
 .btn{
 	white-space:normal;  /*wraps text on buttons*/
@@ -22,9 +33,14 @@
 	font-weight: bold;
 }
 
+#teaser-container{
+	padding: 0;
+}
+
 .modal-backdrop.in{
 	opacity: .9;
 }
+
 
 .level {
 	text-transform: capitalize;
