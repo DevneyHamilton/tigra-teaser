@@ -11,7 +11,7 @@
 			var html;
 			if(Teaser.isReadyForTotalScore()){
 				var score = Teaser.getTotalScore();
-				html = window.JST['score']({score:score })
+				html = window.JST['score']({score:score, name:Teaser.getLevelName(), desc: Teaser.getLevelDesc()});
 			}else{
 				html = window.JST['no_score']
 			}
@@ -61,9 +61,9 @@
 				var selector = "#" + btn_id
 				$(selector).click({category : cat}, that.runErrand);
 				var score_container_selector = "#" + score_container_id
-				var classes = "glyphicon glyphicon-play points pull-right";
+				var classes = "glyphicon glyphicon-play";
 				if(Teaser.hasScore(cat)){
-					classes = "badge points pull-right";
+					classes = "badge";
 				}
 				$(score_container_selector).addClass(classes);
 			});
@@ -121,7 +121,8 @@
 
 
 	var ResultsView = Backbone.Router.extend({
-		initialize: function(options){
+		el: "#subscore-modal-container"
+	,	initialize: function(options){
 			this.options = options;
 			_.bindAll(this, 'render');
 			this.render();
@@ -133,9 +134,13 @@
 			var scoring_schema = app.schema.sub_score; //map from score to message
 			Teaser.setScore(score, cat);
 			console.log("New score for " + cat + ": " + Teaser.getScore(cat));
-			alert("Your score is: " + score  + " out of 2. " + scoring_schema[score]);
-			app.home();
-			
+			var template = window.JST['subscore_modal'];
+			var gerund = app.schema[cat]["gerund"];
+			var recirculation  = app.schema[cat]["recirculation"][score];
+			var html = template({score: score, gerund: gerund, recirculation:recirculation});
+			$(this.el).html(html);	
+			$("#subscore-modal-container").click(app.home);
+			$("#subscore-modal").modal('show');
 		}
 	});
 
@@ -148,7 +153,7 @@
 	,	render: function(){
 			var template = window.JST["learn_more"];
 			$(this.el).html('');//clear
-			$(this.el).html(template());
+			$(this.el).html(template({name: Teaser.getLevelName(), desc: Teaser.getLevelDesc()}));
 			$("#exit-learn-more").click(this.exit);
 		}
 	,	exit: function(){

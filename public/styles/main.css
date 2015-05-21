@@ -15,3 +15,16 @@
 #cat-entry-container{
 	width: 100%;
 }
+
+#subscore-modal{
+	color: white;
+	font-weight: bold;
+}
+
+.modal-backdrop.in{
+	opacity: .9;
+}
+
+.level {
+	text-transform: capitalize;
+}
