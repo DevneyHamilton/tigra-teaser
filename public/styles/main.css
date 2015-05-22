@@ -39,6 +39,13 @@ html,body {
 #subscore-modal{
 	color: white;
 	font-weight: bold;
+	font-size: small
+}
+
+#score-modal{
+	color: white;
+	font-weight: bold;
+	font-size: x-small !important;
 }
 
 #teaser-container{
@@ -63,9 +70,16 @@ html,body {
 
 #landing-header{
 	color:#E46B2B;
-	text-transform: uppercase;
 	font-weight: 900;
 	font-family: "ela_sans_light_capsregular";
+}
+
+#play-invitation{
+	font-style: italic;
+}
+
+#landing-header > h2{
+	text-transform: uppercase;
 }
 
 #landing-header > p{

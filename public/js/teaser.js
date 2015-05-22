@@ -118,7 +118,7 @@
 				}
 			,	"recirculation": {
 					"0": "13"
-				,	"1" : "13 to 48"
+				,	"1" : "Between 13 and 48"
 				,	"2"	: "48"
 				}
 			}
@@ -127,13 +127,13 @@
 			,	"gerund" : "banking"
 			,	"question" : "Where do you bank?"
 			,	"options" : {
-					"0" : "Commercial Bank (like Wells Fargo)"
-				,	"1" : "Regional Bank (like Bank of the West)"
-				,	"2" : "Credit Union (like Self Help Credit Union)"
+					"0" : "Commercial bank (like Wells Fargo)"
+				,	"1" : "Regional bank (like Bank of the West)"
+				,	"2" : "Credit union or community bank (like Beneficial State Bank)"
 				}
 			,	"recirculation": {
 					"0": "17"
-				,	"1" : "17 to 76"
+				,	"1" : "Between 17 and 76"
 				,	"2"	: "76"
 				}
 
@@ -150,7 +150,7 @@
 				}
 			,	"recirculation": {
 					"0": "34"
-				,	"1" : "34 to 65"
+				,	"1" : "Between 34 and 65"
 				,	"2"	: "65"
 				}
 			}

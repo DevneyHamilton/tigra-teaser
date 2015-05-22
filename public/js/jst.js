@@ -5,7 +5,8 @@ window.JST['landing'] = _.template(
 	'<div class="jumbotron container-fluid vertical-centered">\
   		<div id="landing-header">\
   			<h2>How\'s your economic citizenship?</h2>\
-  			<p>Play all three categories to get your Economic Citizenship Score! </p>\
+  			<p>When we support businesses with good employment practices, local sourcing, and local ownership, we exercise good economic citizenship. These practices re-circulate money in our local economy. </p>\
+  			<p id="play-invitation"> Play all three categories to get your Economic Citizenship Score!</p>\
   		</div>\
   		<div id="cat-entry-container" class="btn-group-vertical">\
   		</div>\
@@ -23,7 +24,7 @@ window.JST['subscore_modal'] = _.template(
 				<p> <%=recirculation%> cents for every dollar you spent is re-circulating in the local economy. </p>\
 				<p>You score <%=score%> / 2 when it comes to Economic Citizenship and <%=gerund%>.</p>\
 				<div class="modal-footer">\
-                <button id="close-score-modal" type="button" class="btn btn-default" data-dismiss="modal">Keep playing . . . </button>\
+                <button id="close-subscore-modal" type="button" class="btn btn-default" data-dismiss="modal"><%=button_text%></button>\
 			<div>\
 		</div>\
 	</div>'
@@ -34,8 +35,22 @@ window.JST['cat_entry'] = _.template(
 	);
 
 window.JST['score'] = _.template(
-		'Your Economic Citizenship Score is: <%=score%> out of 6. You\'re a <%=name%>! \
-		<button id="learn-more-btn" class="btn btn-default">What does that mean?</button>'
+		'You\'re a <%=level_name%>! Your Economic Citizenship Score is: <%=score%> out of 6.  \
+		<button id="learn-more-btn" class="btn btn-default">Learn more . . . </button>\
+		<div id="score-modal" class="modal fade">\
+		<div class="modal-dialog">\
+			<div class="modal-header">\
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>\
+				<h1>You\'re a <%=level_name%>!</h1>\
+			</div>\
+			<div class="modal-body">\
+				<p> Your Economic Citizenship Score is: <%=score%> out of 6.</p>\
+				<p><%=desc%></p>\
+				<div class="modal-footer">\
+                <button id="close-score-modal" type="button" class="btn btn-default" data-dismiss="modal">Go Home</button>\
+			<div>\
+		</div>\
+	</div>'
 	);
 
 window.JST['learn_more'] = _.template(

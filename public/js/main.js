@@ -11,12 +11,14 @@
 			var html;
 			if(Teaser.isReadyForTotalScore()){
 				var score = Teaser.getTotalScore();
-				html = window.JST['score']({score:score, name:Teaser.getLevelName(), desc: Teaser.getLevelDesc()});
+				html = window.JST['score']({score:score, level_name:Teaser.getLevelName(), desc: Teaser.getLevelDesc()});
 			}else{
 				html = window.JST['no_score']
 			}
 			$(this.el).html(html);
 			$('#learn-more-btn').click(this.learnMore);
+			//$("#close-score-modal").click(app.home);
+			$("#score-modal").modal('show');
 		}
 	,	learnMore:function(){
 			app.learnMore();
@@ -38,9 +40,6 @@
 			$(this.el).html(''); //clear
 			var landing_template = window.JST["landing"]
 			$(this.el).append(landing_template);
-			//if(Teaser.isReadyForTotalScore()){
-				var total_score_view = new ScoreView();
-			//}
 		}
 	,	afterRender : function(){
 			var that = this;
@@ -136,10 +135,16 @@
 			console.log("New score for " + cat + ": " + Teaser.getScore(cat));
 			var template = window.JST['subscore_modal'];
 			var gerund = app.schema[cat]["gerund"];
+			var button_text = "Keep playing . ."
+			var close_action = app.home
+			if(Teaser.isReadyForTotalScore()){
+				button_text = "Get my Economic Citizenship Score!"
+				close_action = app.getFinalScore
+			}
 			var recirculation  = app.schema[cat]["recirculation"][score];
-			var html = template({score: score, gerund: gerund, recirculation:recirculation});
+			var html = template({score: score, gerund: gerund, recirculation:recirculation, button_text: button_text});
 			$(this.el).html(html);	
-			$("#subscore-modal-container").click(app.home);
+			$("#close-subscore-modal").click(close_action);
 			$("#subscore-modal").modal('show');
 		}
 	});
@@ -179,6 +184,10 @@
 	,	learnMore: function(){
 			this.learn_more_view = new LearnMoreView();
 		}
+	,	getFinalScore: function(){
+			this.landing_view = new LandingView();
+			var final_score_view = new ScoreView();
+	}
 
 	});
 	//start the app
