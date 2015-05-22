@@ -4,16 +4,24 @@
 
 
 html,body {
-height:100%;
-background-color: #eee;
+	height:100%;
+	background-color: #eee;
 }
 
-.jumbotron {
-height:100%;
-}
+/*.vertical-centered{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}*/
 
 .btn{
 	white-space:normal;  /*wraps text on buttons*/
+}
+
+#sub-footer{
+	font-size: xx-small;
+	text-align: center;
 }
 
 .points.badge{
@@ -34,7 +42,35 @@ height:100%;
 }
 
 #teaser-container{
-	padding: 0;
+	padding: 0; 
+	display: flex;
+  	justify-content: center;
+  	align-items: center;
+}
+
+#teaser-footer{
+	background-color: #E46B2B;
+	color: #eee;
+	text-align: center;
+}
+
+#footer-text{
+  position: relative;
+  top: 50%;
+  transform: translateY(25%);
+  font-weight: bold;
+}
+
+#landing-header{
+	color:#E46B2B;
+	text-transform: uppercase;
+	font-weight: 900;
+	font-family: "ela_sans_light_capsregular";
+}
+
+#landing-header > p{
+	font-size: small;
+	font-family: "arial";
 }
 
 .modal-backdrop.in{

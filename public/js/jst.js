@@ -2,9 +2,11 @@ console.log("loading jst")
 window.JST = {};
 
 window.JST['landing'] = _.template(
-	'<div class="jumbotron container-fluid">\
-  		<h3>How\'s your economic citizenship?</h3>\
-  		<p>Play to find out!  </p>\
+	'<div class="jumbotron container-fluid vertical-centered">\
+  		<div id="landing-header">\
+  			<h2>How\'s your economic citizenship?</h2>\
+  			<p>Play all three categories to get your Economic Citizenship Score! </p>\
+  		</div>\
   		<div id="cat-entry-container" class="btn-group-vertical">\
   		</div>\
   		<div id="total-score-container"></div>\
@@ -28,7 +30,7 @@ window.JST['subscore_modal'] = _.template(
 );
 
 window.JST['cat_entry'] = _.template(
-	'  <button id="<%=btn_id%>" class="btn btn-default btn-block">  <%=intro%> <small> <span id="<%=score_container_id%>" class="points pull-right"><%=score%> </span></small>   </button>'
+		' <button id="<%=btn_id%>" class="btn btn-default btn-block">  <%=intro%> <small> <span id="<%=score_container_id%>" class="points pull-right"><%=score%> </span></small>   </button>'
 	);
 
 window.JST['score'] = _.template(
@@ -37,7 +39,7 @@ window.JST['score'] = _.template(
 	);
 
 window.JST['learn_more'] = _.template(
-	'<div class="jumbotron">\
+	'<div class="jumbotron container-fluid">\
   		<h3 class="level"><%=name%></h3>\
   		<p><%=desc%></p>\
   		<button id="exit-learn-more" class="btn btn-default">Exit</button>\
@@ -45,7 +47,7 @@ window.JST['learn_more'] = _.template(
 	)
 
 window.JST['no_score'] = _.template(
-		'Play all three categories to find out your Economic Citizenship Score!'
+		''
 	);
 
 window.JST['category_template'] = _.template(
