@@ -21,8 +21,8 @@ window.JST['subscore_modal'] = _.template(
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>\
 			</div>\
 			<div class="modal-body">\
-				<p> <%=recirculation%> cents for every dollar you spent is re-circulating in the local economy. </p>\
-				<p>You score <%=score%> / 2 when it comes to Economic Citizenship and <%=gerund%>.</p>\
+				<p><small> <%=recirculation%> cents for every dollar you spent is re-circulating in the local economy.</small></small> </p>\
+				<p><small>You score <%=score%> / 2 when it comes to Economic Citizenship and <%=gerund%>.</small></p>\
 				<div class="modal-footer">\
                 <button id="close-subscore-modal" type="button" class="btn btn-default" data-dismiss="modal"><%=button_text%></button>\
 			<div>\
@@ -45,7 +45,7 @@ window.JST['score'] = _.template(
 			</div>\
 			<div class="modal-body">\
 				<p> Your Economic Citizenship Score is: <%=score%> out of 6.</p>\
-				<p><%=desc%></p>\
+				<p><small><%=desc%></small></p>\
 				<div class="modal-footer">\
                 <button id="close-score-modal" type="button" class="btn btn-default" data-dismiss="modal">Go Home</button>\
 			<div>\
