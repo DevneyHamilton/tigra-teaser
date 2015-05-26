@@ -6,7 +6,7 @@ window.JST['landing'] = _.template(
   		<div id="landing-header">\
   			<h2>How\'s your economic citizenship?</h2>\
   			<p>When we support businesses with good employment practices, local sourcing, and local ownership, we exercise good economic citizenship. These practices re-circulate money in our local economy. </p>\
-  			<p id="play-invitation"> Play all three categories to get your Economic Citizenship Score!</p>\
+  			<p id="play-invitation"> Play all three categories to get your Economic Citizenship Score. You get a free point for coming to the IndieAwards!</p>\
   		</div>\
   		<div id="cat-entry-container" class="btn-group-vertical">\
   		</div>\
