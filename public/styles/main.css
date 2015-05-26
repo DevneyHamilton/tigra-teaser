@@ -32,6 +32,10 @@ html,body {
 	color:#e46b2b;
 }
 
+.glyphicon{
+	color:#e46b2b
+}
+
 #cat-entry-container{
 	width: 100%;
 }
@@ -55,10 +59,23 @@ html,body {
   	align-items: center;
 }
 
+
+
+#total-score-container{
+	padding: 8px;
+	color: #E46B2B;
+	text-align: center;
+}
+
+#in_progress_score_container{
+	text-align: right;
+}
+
 #teaser-footer{
 	background-color: #E46B2B;
 	color: #eee;
 	text-align: center;
+	 font-weight: 900;
 }
 
 #footer-text{

@@ -19,7 +19,6 @@ window.JST['subscore_modal'] = _.template(
 		<div class="modal-dialog">\
 			<div class="modal-header">\
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>\
-			</div>\
 			<div class="modal-body">\
 				<p><small> <%=recirculation%> cents for every dollar you spent is re-circulating in the local economy.</small></small> </p>\
 				<p><small>You score <%=score%> / 2 when it comes to Economic Citizenship and <%=gerund%>.</small></p>\
@@ -30,12 +29,17 @@ window.JST['subscore_modal'] = _.template(
 	</div>'
 );
 
+window.JST['in_progress_score'] = _.template(
+	'<div  id="in_progress_score_container">\
+		Current Score: <span id="in_progress_score" class="points badge"><%=score%></span>\
+	</div>')
+
 window.JST['cat_entry'] = _.template(
-		' <button id="<%=btn_id%>" class="btn btn-default btn-block">  <%=intro%> <small> <span id="<%=score_container_id%>" class="points pull-right"><%=score%> </span></small>   </button>'
+		' <button id="<%=btn_id%>" class="btn btn-default btn-block">  <small>  <span id="<%=done_yet_id%>" class=""></span>  </small> <%=intro%> <small> <span id="<%=score_container_id%>" class="points pull-right"><%=score%> </span></small>   </button>'
 	);
 
 window.JST['score'] = _.template(
-		'You\'re a <%=level_name%>! Your Economic Citizenship Score is: <%=score%> out of 6.  \
+		'<p>You\'re a <%=level_name%>! Your Economic Citizenship Score is: <%=score%> out of 7.  </p>\
 		<button id="learn-more-btn" class="btn btn-default">Learn more . . . </button>\
 		<div id="score-modal" class="modal fade">\
 		<div class="modal-dialog">\
@@ -44,7 +48,7 @@ window.JST['score'] = _.template(
 				<h1>You\'re a <%=level_name%>!</h1>\
 			</div>\
 			<div class="modal-body">\
-				<p> Your Economic Citizenship Score is: <%=score%> out of 6.</p>\
+				<p> Your Economic Citizenship Score is: <%=score%> out of 7.</p>\
 				<p><small><%=desc%></small></p>\
 				<div class="modal-footer">\
                 <button id="close-score-modal" type="button" class="btn btn-default" data-dismiss="modal">Go Home</button>\

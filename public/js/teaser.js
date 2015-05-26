@@ -30,7 +30,7 @@
 
 	var _getTotalScore = function(){
 		var cats = _getCats();
-		var total = 0
+		var total = 1; //free point for being at indy awards. 
 		_.each(cats, function(cat, i, list){
 			total += parseInt(scores[cat])
 		});
@@ -40,15 +40,27 @@
 	var _getLevel = function(){
 		var total = _getTotalScore();
 		var map = {
-			"0" : "0"
-		,	"1"	: "0"
+			"1" : "0"
 		,	"2"	: "0"
-		,	"3"	: "1"
+		,	"3"	: "0"
 		,	"4"	: "1"
-		,	"5"	: "2"
+		,	"5"	: "1"
 		,	"6"	: "2"
+		,	"7"	: "2"
 		}
 		return map[total];
+
+	}
+
+	exports.getInProgressScore = function(){
+		var cats = _getCats();
+		var total = 1; //free point for being at indy awards. 
+		_.each(cats, function(cat, i, list){
+			if(!(scores[cat] === "")){
+				total += parseInt(scores[cat])
+			}
+		});
+		return total;
 
 	}
 

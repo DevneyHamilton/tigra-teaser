@@ -13,7 +13,12 @@
 				var score = Teaser.getTotalScore();
 				html = window.JST['score']({score:score, level_name:Teaser.getLevelName(), desc: Teaser.getLevelDesc()});
 			}else{
-				html = window.JST['no_score']
+				console.log("doing in progress score");
+				var score = Teaser.getInProgressScore();
+				var in_progress_template = window.JST['in_progress_score']
+				//html = window.JST['no_score']
+				html = in_progress_template({score:score})
+				console.log(html)
 			}
 			$(this.el).html(html);
 			$('#learn-more-btn').click(this.learnMore);
@@ -51,20 +56,30 @@
 				var template = window.JST['cat_entry'];
 				var intro = schema[cat]["intro"];
 				var score = Teaser.getScore(cat);
+				score = ""
 				var btn_id = cat + "-start";
 				var score_container_id = cat + "-score-container"
-				var html = template({btn_id: btn_id, intro: intro, score_container_id: score_container_id, score: score});
+				var done_yet_id = cat + "-done-yet"
+				var html = template({btn_id: btn_id,
+					 intro: intro, 
+					 score_container_id: score_container_id, 
+					 score: score,
+					 done_yet_id: done_yet_id});
 				console.log(html);
 				$(container_el).append(html);
 				//var button_template = window.JST["cat_button"];
-				var selector = "#" + btn_id
+				var selector = "#" + btn_id;
 				$(selector).click({category : cat}, that.runErrand);
 				var score_container_selector = "#" + score_container_id
-				var classes = "glyphicon glyphicon-play";
+				var score_container_classes = "glyphicon glyphicon-play";
+				var done_yet_classes = "glyphicon glyphicon-unchecked";
 				if(Teaser.hasScore(cat)){
-					classes = "badge";
+					score_container_classes = "badge";
+					done_yet_classes = "glyphicon glyphicon-check";
 				}
-				$(score_container_selector).addClass(classes);
+				//$(score_container_selector).addClass(score_container_classes);
+				$(score_container_selector).addClass(done_yet_classes);
+				//$("#" + done_yet_id).addClass(done_yet_classes);
 			});
 
 		}
@@ -172,6 +187,7 @@
 		}
 	,	home: function(){
 			this.landing_view = new LandingView();
+			this.score_view = new ScoreView();
 		}
 	,	runErrand: function(category){
 			console.log("and we're off: " + category + "!")
