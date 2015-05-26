@@ -23,7 +23,7 @@ window.JST['subscore_modal'] = _.template(
 				<p><small> <%=recirculation%> cents for every dollar you spent is re-circulating in the local economy.</small></small> </p>\
 				<p><small>You score <%=score%> / 2 when it comes to Economic Citizenship and <%=gerund%>.</small></p>\
 				<div class="modal-footer">\
-                <button id="close-subscore-modal" type="button" class="btn btn-default" data-dismiss="modal"><%=button_text%></button>\
+                <button id="close-subscore-modal" type="button" class="btn btn-default preferred-button" data-dismiss="modal"><%=button_text%></button>\
 			<div>\
 		</div>\
 	</div>'
@@ -51,6 +51,7 @@ window.JST['score'] = _.template(
 				<p> Your Economic Citizenship Score is: <%=score%> out of 7.</p>\
 				<p><small><%=desc%></small></p>\
 				<div class="modal-footer">\
+				<a id="sign-up-link" href="https://docs.google.com/forms/d/1a4K2qgeDhaR2mJWCIPC89dWL6W7JZy_deKdiuM63axc/viewform" class="btn btn-default preferred-button">Sign up for TIGRA\'s Economic Citizenship Challenge! </a>\
                 <button id="close-score-modal" type="button" class="btn btn-default" data-dismiss="modal">Go Home</button>\
 			<div>\
 		</div>\
@@ -61,6 +62,7 @@ window.JST['learn_more'] = _.template(
 	'<div class="jumbotron container-fluid">\
   		<h3 class="level"><%=name%></h3>\
   		<p><%=desc%></p>\
+  		<a id="sign-up-link" href="https://docs.google.com/forms/d/1a4K2qgeDhaR2mJWCIPC89dWL6W7JZy_deKdiuM63axc/viewform" class="btn btn-default preferred-button">Sign up for TIGRA\'s Economic Citizenship Challenge! </a>\
   		<button id="exit-learn-more" class="btn btn-default">Exit</button>\
 	</div>'
 	)

@@ -67,8 +67,17 @@ html,body {
 	text-align: center;
 }
 
+
 #in_progress_score_container{
 	text-align: right;
+}
+
+.modal-footer>.btn{
+	color: #E46B2B
+}
+
+.preferred-button{
+	font-weight: bold
 }
 
 #teaser-footer{
