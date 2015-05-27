@@ -138,6 +138,9 @@ html,body {
 	opacity: .9;
 }
 
+.modal{
+	position:absolute;
+}
 
 .level {
 	text-transform: capitalize;
