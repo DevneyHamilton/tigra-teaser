@@ -57,8 +57,12 @@ html,body {
 	display: flex;
   	justify-content: center;
   	align-items: center;
+  	overflow: scroll;
 }
 
+.modal{
+	overflow: scroll;
+}
 
 
 #total-score-container{
@@ -76,6 +80,22 @@ html,body {
 	color: #E46B2B
 }
 
+#learn-more >.btn {
+	text-align: center;
+	margin-top: 5px;
+}
+#learn-more {
+	text-align: center;
+
+}
+
+.modal-footer{
+	text-align: center;
+}
+
+#close-score-modal{
+	margin-top: 5px;
+}
 .preferred-button{
 	font-weight: bold
 }

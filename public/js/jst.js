@@ -50,16 +50,16 @@ window.JST['score'] = _.template(
 			<div class="modal-body">\
 				<p> Your Economic Citizenship Score is: <%=score%> out of 7.</p>\
 				<p><small><%=desc%></small></p>\
-				<div class="modal-footer">\
-				<a id="sign-up-link" href="https://docs.google.com/forms/d/1a4K2qgeDhaR2mJWCIPC89dWL6W7JZy_deKdiuM63axc/viewform" class="btn btn-default preferred-button">Sign up for TIGRA\'s Economic Citizenship Challenge! </a>\
-                <button id="close-score-modal" type="button" class="btn btn-default" data-dismiss="modal">Go Home</button>\
+			<div class="modal-footer">\
+						<a id="sign-up-link" href="https://docs.google.com/forms/d/1a4K2qgeDhaR2mJWCIPC89dWL6W7JZy_deKdiuM63axc/viewform" class="btn btn-default preferred-button">Sign up for TIGRA\'s Economic Citizenship Challenge! </a>\
+                		<button id="close-score-modal" type="button" class="btn btn-default" data-dismiss="modal">Go Home</button>\
 			<div>\
 		</div>\
 	</div>'
 	);
 
 window.JST['learn_more'] = _.template(
-	'<div class="jumbotron container-fluid">\
+	'<div class="jumbotron container-fluid" id="learn-more">\
   		<h3 class="level"><%=name%></h3>\
   		<p><%=desc%></p>\
   		<a id="sign-up-link" href="https://docs.google.com/forms/d/1a4K2qgeDhaR2mJWCIPC89dWL6W7JZy_deKdiuM63axc/viewform" class="btn btn-default preferred-button">Sign up for TIGRA\'s Economic Citizenship Challenge! </a>\
