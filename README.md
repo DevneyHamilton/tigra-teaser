@@ -1,4 +1,4 @@
-# tigra-Teaser
+# tigra-teaser
 
 Tigra Teaser is a simple game that runs in the browser. It's designed to help get people in Oakland excited about working with TIGRA, a grassroots community organization, to build Economic Citizenship.[Here's a link to a dev version we piloted at the Indie Awards] (https://tigra-teaser.herokuapp.com/).
 
