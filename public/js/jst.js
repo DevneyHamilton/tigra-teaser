@@ -1,21 +1,25 @@
+/*This file contains most of the html in the app. If you're looking for a particular div, it's probably in here.*/
+
 console.log("loading jst")
 window.JST = {};
 
+/*TODO: currently customized for IndieAwards. Generalize language.*/
 window.JST['landing'] = _.template(
 	'<div class="jumbotron container-fluid vertical-centered">\
-  		<div id="landing-header">\
+  		<div id="landing_header">\
   			<h2>How\'s your economic citizenship?</h2>\
   			<p>When we support businesses with good employment practices, local sourcing, and local ownership, we exercise good economic citizenship. These practices re-circulate money in our local economy. </p>\
-  			<p id="play-invitation"> Play all three categories to get your Economic Citizenship Score. You get a free point for coming to the IndieAwards!</p>\
+  			<p id="play_invitation"> Play all three categories to get your Economic Citizenship Score. You get a free point for coming to the IndieAwards!</p>\
   		</div>\
-  		<div id="cat-entry-container" class="btn-group-vertical">\
+  		<div id="cat_entry_container" class="btn-group-vertical">\
   		</div>\
-  		<div id="total-score-container"></div>\
+  		<div id="score_container"></div>\
 	</div>'
 	);
 
+/*subscore modal should appear after a user answers a multiple-choice question*/
 window.JST['subscore_modal'] = _.template(
-	'<div id="subscore-modal" class="modal fade">\
+	'<div id="subscore_modal" class="modal fade">\
 		<div class="modal-dialog">\
 			<div class="modal-header">\
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>\
@@ -23,12 +27,13 @@ window.JST['subscore_modal'] = _.template(
 				<p><small> <%=recirculation%> cents for every dollar you spent is re-circulating in the local economy.</small></small> </p>\
 				<p><small>You score <%=score%> out of 2 when it comes to Economic Citizenship and <%=gerund%>.</small></p>\
 				<div class="modal-footer">\
-                <button id="close-subscore-modal" type="button" class="btn btn-default preferred-button" data-dismiss="modal"><%=button_text%></button>\
+                <button id="close_subscore_modal" type="button" class="btn btn-default preferred-button" data-dismiss="modal"><%=button_text%></button>\
 			<div>\
 		</div>\
 	</div>'
 );
 
+/*subscore modal should appear after a user answers a multiple-choice question*/
 window.JST['in_progress_score'] = _.template(
 	'<div  id="in_progress_score_container">\
 		Current Score: <span id="in_progress_score" class="points badge"><%=score%></span>\
@@ -40,8 +45,8 @@ window.JST['cat_entry'] = _.template(
 
 window.JST['score'] = _.template(
 		'<p>You\'re a <%=level_name%>! Your Economic Citizenship Score is: <%=score%> out of 7.  </p>\
-		<button id="learn-more-btn" class="btn btn-default">Learn more . . . </button>\
-		<div id="score-modal" class="modal fade">\
+		<button id="learn_more_btn" class="btn btn-default">Learn more . . . </button>\
+		<div id="score_modal" class="modal fade">\
 		<div class="modal-dialog">\
 			<div class="modal-header">\
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>\
@@ -51,19 +56,19 @@ window.JST['score'] = _.template(
 				<p> Your Economic Citizenship Score is: <%=score%> out of 7.</p>\
 				<p><small><%=desc%></small></p>\
 			<div class="modal-footer">\
-						<a id="sign-up-link" href="https://docs.google.com/forms/d/1a4K2qgeDhaR2mJWCIPC89dWL6W7JZy_deKdiuM63axc/viewform" class="btn btn-default preferred-button">Sign up for TIGRA\'s Economic Citizenship Challenge! </a>\
-                		<button id="close-score-modal" type="button" class="btn btn-default" data-dismiss="modal">Go Home</button>\
+						<a href="https://docs.google.com/forms/d/1a4K2qgeDhaR2mJWCIPC89dWL6W7JZy_deKdiuM63axc/viewform" class="btn btn-default preferred-button">Sign up for TIGRA\'s Economic Citizenship Challenge! </a>\
+                		<button id="close_score_modal" type="button" class="btn btn-default" data-dismiss="modal">Go Home</button>\
 			<div>\
 		</div>\
 	</div>'
 	);
 
 window.JST['learn_more'] = _.template(
-	'<div class="jumbotron container-fluid" id="learn-more">\
+	'<div class="jumbotron container-fluid" id="learn_more">\
   		<h3 class="level"><%=name%></h3>\
   		<p><%=desc%></p>\
-  		<a id="sign-up-link" href="https://docs.google.com/forms/d/1a4K2qgeDhaR2mJWCIPC89dWL6W7JZy_deKdiuM63axc/viewform" class="btn btn-default preferred-button">Sign up for TIGRA\'s Economic Citizenship Challenge! </a>\
-  		<button id="exit-learn-more" class="btn btn-default">Exit</button>\
+  		<a href="https://docs.google.com/forms/d/1a4K2qgeDhaR2mJWCIPC89dWL6W7JZy_deKdiuM63axc/viewform" class="btn btn-default preferred-button">Sign up for TIGRA\'s Economic Citizenship Challenge! </a>\
+  		<button id="exit_learn_more" class="btn btn-default">Exit</button>\
 	</div>'
 	)
 
@@ -74,9 +79,9 @@ window.JST['no_score'] = _.template(
 window.JST['category_template'] = _.template(
 	'<div class="jumbotron">\
   		<p><%=question%></p>\
-  		<div class="btn-group-vertical" id="<%=cat%>-options-container">\
+  		<div class="btn-group-vertical" id="<%=cat%>_options_container">\
   		</div>\
-  		<div id="subscore-modal-container"></div>\
+  		<div id="subscore_modal_container"></div>\
 	</div>'
 	);
 

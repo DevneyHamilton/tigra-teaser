@@ -19,7 +19,7 @@ html,body {
 	white-space:normal;  /*wraps text on buttons*/
 }
 
-#sub-footer{
+#sub_footer{
 	font-size: xx-small;
 	text-align: center;
 }
@@ -36,23 +36,23 @@ html,body {
 	color:#e46b2b
 }
 
-#cat-entry-container{
+#cat_entry_container{
 	width: 100%;
 }
 
-#subscore-modal{
+#subscore_modal{
 	color: white;
 	font-weight: bold;
 	font-size: small
 }
 
-#score-modal{
+#score_modal{
 	color: white;
 	font-weight: bold;
 	font-size: x-small !important;
 }
 
-#teaser-container{
+#teaser_container{
 	padding: 0; 
 	display: flex;
   	justify-content: center;
@@ -65,7 +65,7 @@ html,body {
 }
 
 
-#total-score-container{
+#score_container{
 	padding: 8px;
 	color: #E46B2B;
 	text-align: center;
@@ -80,12 +80,12 @@ html,body {
 	color: #E46B2B
 }
 
-#learn-more >.btn {
+#learn_more >.btn {
 	text-align: center;
 	margin-bottom: 5px;
 }
 
-#learn-more {
+#learn_more {
 	text-align: center;
 
 }
@@ -101,35 +101,35 @@ html,body {
 	font-weight: bold
 }
 
-#teaser-footer{
+#teaser_footer{
 	background-color: #E46B2B;
 	color: #eee;
 	text-align: center;
 	 font-weight: 900;
 }
 
-#footer-text{
+#footer_text{
   position: relative;
   top: 50%;
   transform: translateY(25%);
   font-weight: bold;
 }
 
-#landing-header{
+#landing_header{
 	color:#E46B2B;
 	font-weight: 900;
 	font-family: "ela_sans_light_capsregular";
 }
 
-#play-invitation{
+#play_invitation{
 	font-style: italic;
 }
 
-#landing-header > h2{
+#landing_header > h2{
 	text-transform: uppercase;
 }
 
-#landing-header > p{
+#landing_header > p{
 	font-size: small;
 	font-family: "arial";
 }

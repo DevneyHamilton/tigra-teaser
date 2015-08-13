@@ -1,7 +1,7 @@
 (function($){
 
 	var ScoreView = Backbone.View.extend({
-		el: '#total-score-container'
+		el: '#score_container'
 	,	initialize: function(){
 			_.bindAll(this, 'render', 'learnMore');
 			this.render();
@@ -21,9 +21,9 @@
 				console.log(html)
 			}
 			$(this.el).html(html);
-			$('#learn-more-btn').click(this.learnMore);
+			$('#learn_more_btn').click(this.learnMore);
 			//$("#close-score-modal").click(app.home);
-			$("#score-modal").modal('show');
+			$("#score_modal").modal('show');
 		}
 	,	learnMore:function(){
 			app.learnMore();
@@ -31,7 +31,7 @@
 	});
 
 	var LandingView = Backbone.View.extend({
-		el: '#teaser-container'
+		el: '#teaser_container'
 	,	initialize :function(){
 			console.log("initing LandingView");
 			_.bindAll(this, 'render', 'runErrand');
@@ -52,13 +52,13 @@
 			var cats = Teaser.getCats();  
 			_.each(cats, function(cat, i, list){
 				console.log(cat);
-				var container_el = "#cat-entry-container"; //coupled with window.JST["landing"]
+				var container_el = "#cat_entry_container"; //coupled with window.JST["landing"]
 				var template = window.JST['cat_entry'];
 				var intro = schema[cat]["intro"];
 				var score = Teaser.getScore(cat);
 				score = ""
 				var btn_id = cat + "-start";
-				var score_container_id = cat + "-score-container"
+				var score_container_id = cat + "_score_container"
 				var done_yet_id = cat + "-done-yet"
 				var html = template({btn_id: btn_id,
 					 intro: intro, 
@@ -92,7 +92,7 @@
 	});
 
 	var CategoryView = Backbone.View.extend({
-		el: '#teaser-container'
+		el: '#teaser_container'
 	,	initialize:function(options){
 			this.options = options;
 			_.bindAll(this, 'render');
@@ -116,8 +116,8 @@
 			var keys = Object.keys(cat_options);
 			_.each(keys, function(option_score, i, list){
 				var template = window.JST["option"]
-				var btn_id= cat + "-option-" + option_score;
-				var container_selector = "#" + that.options.category + "-options-container"
+				var btn_id= cat + "_option_" + option_score;
+				var container_selector = "#" + that.options.category + "_options_container"
 				$(container_selector).append(template({btn_id: btn_id, desc: cat_options[option_score]}))
 				var selector = "#" + btn_id;
 				$(selector).click({score: option_score, cat: cat}, that.getResult)
@@ -135,7 +135,7 @@
 
 
 	var ResultsView = Backbone.Router.extend({
-		el: "#subscore-modal-container"
+		el: "#subscore_modal_container"
 	,	initialize: function(options){
 			this.options = options;
 			_.bindAll(this, 'render');
@@ -159,13 +159,13 @@
 			var recirculation  = app.schema[cat]["recirculation"][score];
 			var html = template({score: score, gerund: gerund, recirculation:recirculation, button_text: button_text});
 			$(this.el).html(html);	
-			$("#close-subscore-modal").click(close_action);
-			$("#subscore-modal").modal('show');
+			$("#close_subscore_modal").click(close_action);
+			$("#subscore_modal").modal('show');
 		}
 	});
 
 	var LearnMoreView = Backbone.View.extend({
-		el: '#teaser-container'
+		el: '#teaser_container'
 	,	initialize :function(){
 			_.bindAll(this, 'render', 'exit');
 			this.render();
@@ -174,7 +174,7 @@
 			var template = window.JST["learn_more"];
 			$(this.el).html('');//clear
 			$(this.el).html(template({name: Teaser.getLevelName(), desc: Teaser.getLevelDesc()}));
-			$("#exit-learn-more").click(this.exit);
+			$("#exit_learn_more").click(this.exit);
 		}
 	,	exit: function(){
 			app.home();
