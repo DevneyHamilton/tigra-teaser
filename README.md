@@ -1,6 +1,6 @@
-# TIGRA-Teaser
+# tigra-Teaser
 
-TIGRA Teaser is a simple game that runs in the browser. It's designed to help get people in Oakland excited about working with TIGRA, a grassroots community organization, to build Economic Citizenship.[Here's a link to a dev version we piloted at the Indie Awards] (https://tigra-teaser.herokuapp.com/).
+Tigra Teaser is a simple game that runs in the browser. It's designed to help get people in Oakland excited about working with TIGRA, a grassroots community organization, to build Economic Citizenship.[Here's a link to a dev version we piloted at the Indie Awards] (https://tigra-teaser.herokuapp.com/).
 
 What's it made of?
   - teaser.js is a module encoding the logic of this game: three multiple choice questions, scoring, Economic Citizenship 'levels,' and contextual information to give meaning to the scores.
