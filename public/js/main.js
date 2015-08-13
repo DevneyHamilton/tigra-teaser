@@ -1,35 +1,5 @@
 (function($){
 
-	var ScoreView = Backbone.View.extend({
-		el: '#score_container'
-	,	initialize: function(){
-			_.bindAll(this, 'render', 'learnMore');
-			this.render();
-		}
-	,	render: function(){
-			$(this.el).html(""); //clear
-			var html;
-			if(Teaser.isReadyForTotalScore()){
-				var score = Teaser.getTotalScore();
-				html = window.JST['score']({score:score, level_name:Teaser.getLevelName(), desc: Teaser.getLevelDesc()});
-			}else{
-				console.log("doing in progress score");
-				var score = Teaser.getInProgressScore();
-				var in_progress_template = window.JST['in_progress_score']
-				//html = window.JST['no_score']
-				html = in_progress_template({score:score})
-				console.log(html)
-			}
-			$(this.el).html(html);
-			$('#learn_more_btn').click(this.learnMore);
-			//$("#close-score-modal").click(app.home);
-			$("#score_modal").modal('show');
-		}
-	,	learnMore:function(){
-			app.learnMore();
-		}	
-	});
-
 	var LandingView = Backbone.View.extend({
 		el: '#teaser_container'
 	,	initialize :function(){
@@ -145,14 +115,14 @@
 	,	render:function(){
 			var score = this.options.score
 			var cat = this.options.cat
-			var scoring_schema = app.schema.sub_score; //map from score to message
+			//var scoring_schema = app.schema.sub_score; //map from score to message
 			Teaser.setScore(score, cat);
 			console.log("New score for " + cat + ": " + Teaser.getScore(cat));
 			var template = window.JST['subscore_modal'];
 			var gerund = app.schema[cat]["gerund"];
 			var button_text = "Keep playing . ."
 			var close_action = app.home
-			if(Teaser.isReadyForTotalScore()){
+			if(Teaser.isReadyForFinalScore()){
 				button_text = "Get my Economic Citizenship Score!"
 				close_action = app.getFinalScore
 			}
@@ -163,6 +133,48 @@
 			$("#subscore_modal").modal('show');
 		}
 	});
+
+	var ScoreView = Backbone.View.extend({
+		el: '#score_container'
+	,	announce : this.announce
+	,	initialize: function(){
+			_.bindAll(this, 'render', 'learnMore');
+			this.render();
+		}
+	,	render: function(){
+			$(this.el).html(""); //clear
+			var html;
+			if(Teaser.isReadyForFinalScore()){
+				var score = Teaser.getFinalScore();
+				html = window.JST['final_score']({score:score, level_name:Teaser.getLevelName(), desc: Teaser.getLevelDesc()});
+			}else{
+				console.log("doing in progress score");
+				var score = Teaser.getInProgressScore();
+				var in_progress_template = window.JST['in_progress_score']
+				//html = window.JST['no_score']
+				html = in_progress_template({score:score})
+				console.log(html)
+			}
+			$(this.el).html(html);
+			$('#learn_more_btn').click(this.learnMore);
+		}
+	,	learnMore:function(){
+			app.learnMore();
+		}	
+	});
+
+	var FinalScoreAnnounceView = Backbone.View.extend({
+		el:'#score_container'
+	,	initialize: function(){
+			_.bindAll(this, 'render');
+			this.render();
+		}
+	,	render: function(){
+			var html = window.JST['announce_final_score'];
+			$(this.el).append(html);
+			$("#score_modal").modal('show');
+		}
+	})
 
 	var LearnMoreView = Backbone.View.extend({
 		el: '#teaser_container'
@@ -202,7 +214,8 @@
 		}
 	,	getFinalScore: function(){
 			this.landing_view = new LandingView();
-			var final_score_view = new ScoreView();
+			var final_score_view = new ScoreView();	
+			var final_score_announce = new FinalScoreAnnounceView();
 	}
 
 	});

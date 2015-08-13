@@ -43,24 +43,28 @@ window.JST['cat_entry'] = _.template(
 		' <button id="<%=btn_id%>" class="btn btn-default btn-block">  <small>  <span id="<%=done_yet_id%>" class=""></span>  </small> <%=intro%> <small> <span id="<%=score_container_id%>" class="points pull-right"><%=score%> </span></small>   </button>'
 	);
 
-window.JST['score'] = _.template(
-		'<p>You\'re a <%=level_name%>! Your Economic Citizenship Score is: <%=score%> out of 7.  </p>\
-		<button id="learn_more_btn" class="btn btn-default">Learn more . . . </button>\
-		<div id="score_modal" class="modal fade">\
-		<div class="modal-dialog">\
-			<div class="modal-header">\
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>\
-				<h1>You\'re a <%=level_name%>!</h1>\
-			</div>\
-			<div class="modal-body">\
-				<p> Your Economic Citizenship Score is: <%=score%> out of 7.</p>\
-				<p><small><%=desc%></small></p>\
-			<div class="modal-footer">\
+window.JST['announce_final_score'] = _.template(
+		'<div id="score_modal" class="modal fade">\
+			<div class="modal-dialog">\
+				<div class="modal-header">\
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>\
+					<h1>You\'re a <%=level_name%>!</h1>\
+				</div>\
+				<div class="modal-body">\
+					<p> Your Economic Citizenship Score is: <%=score%> out of 7.</p>\
+					<p><small><%=desc%></small></p>\
+				</div>\
+				<div class="modal-footer">\
 						<a href="https://docs.google.com/forms/d/1a4K2qgeDhaR2mJWCIPC89dWL6W7JZy_deKdiuM63axc/viewform" class="btn btn-default preferred-button">Sign up for TIGRA\'s Economic Citizenship Challenge! </a>\
-                		<button id="close_score_modal" type="button" class="btn btn-default" data-dismiss="modal">Go Home</button>\
-			<div>\
-		</div>\
-	</div>'
+	                	<button id="close_score_modal" type="button" class="btn btn-default" data-dismiss="modal">Go Home</button>\
+				</div>\
+			</div>\
+		</div>')
+
+
+window.JST['final_score'] = _.template(
+		'<p>You\'re a <%=level_name%>! Your Economic Citizenship Score is: <%=score%> out of 7.  </p>\
+		<button id="learn_more_btn" class="btn btn-default">Learn more . . . </button>'
 	);
 
 window.JST['learn_more'] = _.template(

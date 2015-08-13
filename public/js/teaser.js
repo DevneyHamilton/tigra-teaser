@@ -1,5 +1,8 @@
+/*This file encodes the logic of the Teaser game, setting up the questions, and tracking scoring.*/
+
+
 (function(exports){
-	var schema = {};
+	var schema = {}; //in init, filled with subscore 
 
 	//dynamic infor for app
 	var scores = {
@@ -24,6 +27,7 @@
 		,	"desc" : " You're making changes! Your daily financial habits are making a great impact on the local community: you are supporting local jobs with higher wages and sustaining our environment. You are a excellent example of an ECONOMIC CITIZEN! Every time you purchase something, you keep your community in mind and we think that's great! Keep making that CHANGE!"
 		}
 	}
+
 	var _getCats = function(){
 		return ["grocery", "dining", "bank"];
 	}
@@ -54,7 +58,7 @@
 
 	exports.getInProgressScore = function(){
 		var cats = _getCats();
-		var total = 1; //free point for being at indy awards. 
+		var total = 1; //free point for being at indie awards. 
 		_.each(cats, function(cat, i, list){
 			if(!(scores[cat] === "")){
 				total += parseInt(scores[cat])
@@ -86,7 +90,7 @@
 		return levels[level]["desc"];
 	}
 
-	exports.isReadyForTotalScore = function(){
+	exports.isReadyForFinalScore = function(){
 		var cats = _getCats();
 		var answer = true;
 		_.each(cats, function(cat, i, list){
@@ -97,9 +101,10 @@
 		return answer;
 	}
 
-	/*call ONLY if isReadyForTotalScore  returns true
+	/*call ONLY if isReadyForFinalScore  returns true
+	TODO: error check in this fn.
 	*/
-	exports.getTotalScore = function(){
+	exports.getFinalScore = function(){
 		return _getTotalScore();
 	}
 
@@ -114,12 +119,7 @@
 	exports.init = function(){
 		console.log("initing teaser")
 		schema = {
-			"sub_score" : {
-				"0": "beginner"
-			,	"1": "builder"
-			,	"2": "change-maker"
-			}
-		,	"grocery" : {
+			"grocery" : {
 				"intro" : "Get groceries  "
 			,	"gerund" : "getting groceries"
 			,	"question" : "Where was the LAST place that you bought groceries?"
