@@ -1,18 +1,28 @@
-/*This file encodes the logic of the Teaser game, setting up the questions, and tracking scoring.*/
+/*This file encodes the logic of the Economic Citizenship Teaser game, setting up the questions, and tracking scoring.
+It currently uses three categories: grocery, bank, dining. For each category, the user is given
+a multiple choice question with three options. Each option maps to a subscore for that category, which is 0, 
+1, or 2. After the user has answered for all three categories, they get a total (also called 'final') score, 
+from 1 to 7, which is then mapped to a level of economic citizenship: beginner, builder, change-maker. Each level
+also has a 'description (desc) that is a message for users with that level. 
 
+Usage: 
+Teaser.init();
+Teaser.setScore(1, "bank");
+Teaser.getScore("bank");
+*/
 
 (function(exports){
-	var schema = {}; //in init, filled with subscore 
+	var schema = {}; //in init, filled with category schema. 
 
-	//dynamic infor for app
+	//Tracks user's scores. "" means there is no score yet. 
 	var scores = {
 		"grocery" : ""
 	, 	"bank" : ""
 	,	"dining" : ""
-	,	"total" : ""
+	,	"total" : "" //total score and final score are the same thing. 
 	}
 
-
+	//defines the three 'levels' of economic citizenship, applicable to subscores and to the total score.
 	var levels = {
 		"0" : {
 			"name" : "beginner"
@@ -28,10 +38,15 @@
 		}
 	}
 
+
+	/*Coupled with init() - these are just the keys to the schema object*/
 	var _getCats = function(){
 		return ["grocery", "dining", "bank"];
 	}
 
+	/*If user has answered a question in all three categories, _getTotalScore will report it. Note that if 
+	called when not all categories have been answered, there may be NaN problems. TODO: redundant of
+	and worse than getInProgressScore, refactor*/
 	var _getTotalScore = function(){
 		var cats = _getCats();
 		var total = 1; //free point for being at indy awards. 
@@ -41,8 +56,10 @@
 		return total;
 	}
 
+	/*maps a total/final score to a level of economic citizenship*/
 	var _getLevel = function(){
 		var total = _getTotalScore();
+		console.log("total:" + total)
 		var map = {
 			"1" : "0"
 		,	"2"	: "0"
@@ -56,6 +73,8 @@
 
 	}
 
+	/*Coupled with html in jst.js's 'landing' template saying a user gets 1 pt free. This creates a score of 1 to start with, a hack for indie awards.
+	This function can be safely called regardless of the user's progress.*/
 	exports.getInProgressScore = function(){
 		var cats = _getCats();
 		var total = 1; //free point for being at indie awards. 
@@ -82,6 +101,8 @@
 
 	exports.getLevelName = function(){
 		var level  = _getLevel();
+		console.log("level:" + level);
+		console.log("Name: " + levels[level]["name"]);
 		return levels[level]["name"];
 	}
 
@@ -120,15 +141,15 @@
 		console.log("initing teaser")
 		schema = {
 			"grocery" : {
-				"intro" : "Get groceries  "
-			,	"gerund" : "getting groceries"
-			,	"question" : "Where was the LAST place that you bought groceries?"
-			,	"options" : {
+				"intro" : "Get groceries  " //intro is used in 'cat_entry' template in jst.js
+			,	"gerund" : "getting groceries" //gerund is used in displaying the sub_score response
+			,	"question" : "Where was the LAST place that you bought groceries?" //multiple choice question
+			,	"options" : { //multiple choice answers. Note the key here is also the score
 					"0" : "Big-box chain store (like Walmart or Target)"
 				,	"1"	: "Local store with good wages or local sourcing (like Berkeley Bowl)"
 				,	"2" : "Local store with good wages AND local sourcing (like Rainbow Co-Op)"
 				}
-			,	"recirculation": {
+			,	"recirculation": { //recirculation is the cents recirculating in the economy, used in the sub_score response
 					"0": "13"
 				,	"1" : "Between 13 and 48"
 				,	"2"	: "48"

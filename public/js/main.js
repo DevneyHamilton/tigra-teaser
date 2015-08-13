@@ -1,5 +1,7 @@
 (function($){
 
+/*This file has the Backbone Views that make the Teaser logic available and interactive for the user.*/
+	/*Sets up the 'home' screen*/
 	var LandingView = Backbone.View.extend({
 		el: '#teaser_container'
 	,	initialize :function(){
@@ -21,39 +23,29 @@
 			var schema = Teaser.getSchema();
 			var cats = Teaser.getCats();  
 			_.each(cats, function(cat, i, list){
+				//displays a button for each category
 				console.log(cat);
 				var container_el = "#cat_entry_container"; //coupled with window.JST["landing"]
 				var template = window.JST['cat_entry'];
 				var intro = schema[cat]["intro"];
-				var score = Teaser.getScore(cat);
-				score = ""
 				var btn_id = cat + "-start";
-				var score_container_id = cat + "_score_container"
 				var done_yet_id = cat + "-done-yet"
 				var html = template({btn_id: btn_id,
 					 intro: intro, 
-					 score_container_id: score_container_id, 
-					 score: score,
 					 done_yet_id: done_yet_id});
 				console.log(html);
 				$(container_el).append(html);
-				//var button_template = window.JST["cat_button"];
 				var selector = "#" + btn_id;
 				$(selector).click({category : cat}, that.runErrand);
-				var score_container_selector = "#" + score_container_id
-				var score_container_classes = "glyphicon glyphicon-play";
 				var done_yet_classes = "glyphicon glyphicon-unchecked";
 				if(Teaser.hasScore(cat)){
-					score_container_classes = "badge";
 					done_yet_classes = "glyphicon glyphicon-check";
 				}
-				//$(score_container_selector).addClass(score_container_classes);
-				$(score_container_selector).addClass(done_yet_classes);
-				//$("#" + done_yet_id).addClass(done_yet_classes);
+				$("#" + done_yet_id).addClass(done_yet_classes);
 			});
 
 		}
-	,	runErrand :function(e){
+	,	runErrand :function(e){ //click handler for each category button
 			e.preventDefault();
 			var category =  e.data["category"];
 			console.log("heading out for " + category);
@@ -61,6 +53,8 @@
 		}
 	});
 
+
+	/*Creates the multiple choice question html for each category*/
 	var CategoryView = Backbone.View.extend({
 		el: '#teaser_container'
 	,	initialize:function(options){
@@ -90,21 +84,22 @@
 				var container_selector = "#" + that.options.category + "_options_container"
 				$(container_selector).append(template({btn_id: btn_id, desc: cat_options[option_score]}))
 				var selector = "#" + btn_id;
-				$(selector).click({score: option_score, cat: cat}, that.getResult)
+				$(selector).click({score: option_score, cat: cat}, that.getSubscore)
 			})
 		}
-	,	getResult: function(e){
+	,	getSubscore: function(e){
 			e.preventDefault();
 			var score =  e.data["score"];
 			var cat = e.data["cat"];
 			console.log("Option selected: " + score);
-			app.getResult(score, cat);
+			app.getSubscore(score, cat);
 		}
 	});
 
 
-
-	var ResultsView = Backbone.Router.extend({
+	/*Creates and displays a modal that displays the user's subscore after they answer a category question.
+	This could be called 'subScoreVie*/
+	var SubscoreView = Backbone.Router.extend({
 		el: "#subscore_modal_container"
 	,	initialize: function(options){
 			this.options = options;
@@ -115,14 +110,13 @@
 	,	render:function(){
 			var score = this.options.score
 			var cat = this.options.cat
-			//var scoring_schema = app.schema.sub_score; //map from score to message
 			Teaser.setScore(score, cat);
 			console.log("New score for " + cat + ": " + Teaser.getScore(cat));
 			var template = window.JST['subscore_modal'];
 			var gerund = app.schema[cat]["gerund"];
-			var button_text = "Keep playing . ."
-			var close_action = app.home
-			if(Teaser.isReadyForFinalScore()){
+			var button_text = "Keep playing . ." //case where the user still has more questions to answer
+			var close_action = app.home //case where the user still has more questions to answer
+			if(Teaser.isReadyForFinalScore()){ //but if they are done answering questions, announce their score!
 				button_text = "Get my Economic Citizenship Score!"
 				close_action = app.getFinalScore
 			}
@@ -134,6 +128,9 @@
 		}
 	});
 
+
+	/*Controls the score-container on the home page. It keeps a in-progress-score out of 7 until the user has 
+	answered all three questions. Then it displays a final score out of 7 on the home page. This is different than "FinalScoreAnnounceView" */
 	var ScoreView = Backbone.View.extend({
 		el: '#score_container'
 	,	announce : this.announce
@@ -163,6 +160,8 @@
 		}	
 	});
 
+	/*Announces the score in a modal only right after the user clicks "get citizenship score!" after they have answered all three questions. 
+	This is redundant of what happens in 'learn more.'*/
 	var FinalScoreAnnounceView = Backbone.View.extend({
 		el:'#score_container'
 	,	initialize: function(){
@@ -170,12 +169,14 @@
 			this.render();
 		}
 	,	render: function(){
-			var html = window.JST['announce_final_score'];
+			var score = Teaser.getFinalScore();
+			var html = window.JST['announce_final_score']({score:score, level_name:Teaser.getLevelName(), desc: Teaser.getLevelDesc()});
 			$(this.el).append(html);
 			$("#score_modal").modal('show');
 		}
 	})
 
+	/*A more boring way than FinalScoreAnnounceView to see what your score means.*/
 	var LearnMoreView = Backbone.View.extend({
 		el: '#teaser_container'
 	,	initialize :function(){
@@ -202,11 +203,11 @@
 			this.score_view = new ScoreView();
 		}
 	,	runErrand: function(category){
-			console.log("and we're off: " + category + "!")
+			console.log("and we're off to: " + category + "!")
 			this.errand_view = new CategoryView({"category" : category});
 		}
-	,	getResult: function(score, cat){
-			this.results_view = new ResultsView({score: score, cat:cat});
+	,	getSubscore: function(score, cat){
+			this.subscore_view = new SubscoreView({score: score, cat:cat});
 
 		}
 	,	learnMore: function(){

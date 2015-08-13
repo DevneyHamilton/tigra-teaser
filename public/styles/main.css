@@ -1,5 +1,8 @@
-/*Tigra orange: #E46B2B
- complementary green: #00A472
+/*
+This css is pretty haphazard, added one step at time to make things look better. 
+
+color-ref
+Tigra orange: #E46B2B
  bootstrap default jumbotron background color: #eee*/
 
 
@@ -8,12 +11,6 @@ html,body {
 	background-color: #eee;
 }
 
-/*.vertical-centered{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}*/
 
 .btn{
 	white-space:normal;  /*wraps text on buttons*/
