@@ -3,11 +3,11 @@
 Tigra Teaser is a simple game that runs in the browser. It's designed to help get people in Oakland excited about working with TIGRA, a grassroots community organization, to build Economic Citizenship. [Here's a link to a dev version we piloted at the Indie Awards] (https://tigra-teaser.herokuapp.com/).
 
 What's it made of?
-  - teaser.js is a module encoding the logic of this game: three multiple choice questions, scoring, Economic Citizenship 'levels,' and contextual information to give meaning to the scores.
-  - main.js uses **Backbone.js** to render the Teaser.js logic in interactive Views. 
-  - jst.js has **Underscore.js** templates used by main.js
-  - index.html loads the necessary js remotely and sets up a container for main.js to work with
-  - main.css has some CSS, partially relying on **Bootstrap**
+  - public/js/teaser.js is a module encoding the logic of this game: three multiple choice questions, scoring, Economic Citizenship 'levels,' and contextual information to give meaning to the scores.
+  - public/js/main.js uses **Backbone.js** to render the Teaser.js logic in interactive Views. 
+  - public/js/jst.js has **Underscore.js** templates used by main.js
+  - public/index.html loads the necessary js remotely and sets up a container for main.js to work with
+  - public/styles/main.css has some CSS, partially relying on **Bootstrap**
   - there's just enough server-side to get it launched using **node.js** and **Express**. 
 
 How can I try it?
